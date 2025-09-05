@@ -49,6 +49,25 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 
 }
 
+// certificates variables
+const certificateItem = document.querySelectorAll("[data-certificate-item]");
+
+// add click event to all certificate items
+for (let i = 0; i < certificateItem.length; i++) {
+
+  certificateItem[i].addEventListener("click", function () {
+
+    modalImg.src = this.querySelector("[data-certificate-img]").src;
+    modalImg.alt = this.querySelector("[data-certificate-img]").alt;
+    modalTitle.innerHTML = this.querySelector(".certificate-item-title").innerHTML;
+    modalText.innerHTML = this.querySelector(".certificate-text").innerHTML;
+
+    testimonialsModalFunc();
+
+  });
+
+}
+
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
@@ -196,14 +215,24 @@ const pages = document.querySelectorAll("[data-page]");
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
+    // Remove active class from all pages and nav links
+    for (let j = 0; j < pages.length; j++) {
+      pages[j].classList.remove("active");
+    }
+
+    for (let k = 0; k < navigationLinks.length; k++) {
+      navigationLinks[k].classList.remove("active");
+    }
+
+    // Add active class to clicked nav link
+    this.classList.add("active");
+
+    // Add active class to corresponding page
+    for (let j = 0; j < pages.length; j++) {
+      if (this.innerHTML.toLowerCase() === pages[j].dataset.page) {
+        pages[j].classList.add("active");
         window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+        break;
       }
     }
 
