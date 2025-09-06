@@ -49,24 +49,6 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 
 }
 
-// certificates variables
-const certificateItem = document.querySelectorAll("[data-certificate-item]");
-
-// add click event to all certificate items
-for (let i = 0; i < certificateItem.length; i++) {
-
-  certificateItem[i].addEventListener("click", function () {
-
-    modalImg.src = this.querySelector("[data-certificate-img]").src;
-    modalImg.alt = this.querySelector("[data-certificate-img]").alt;
-    modalTitle.innerHTML = this.querySelector(".certificate-item-title").innerHTML;
-    modalText.innerHTML = this.querySelector(".certificate-text").innerHTML;
-
-    testimonialsModalFunc();
-
-  });
-
-}
 
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
